@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cinnamoroll Sweet Café</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --main-1: #c6f2ff;
+        --main-2: #d9f6ff;
+        --sub-1: #ffe6f6;
+        --sub-2: #ffd0ee;
+        --point-1: #ff95a7;
+        --point-2: #8be4ff;
+        --white: #ffffff;
+        --text-dark: #5a3e50;
+        --text-mid: #8b6a80;
+        --text-light: #c4a8bb;
+        --brown: #a07850;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100vh;
+        background: var(--main-2);
+        font-family: "Noto Sans KR", sans-serif;
+      }
+
+      .page {
+        max-width: 430px;
+        margin: 0 auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
+        padding-bottom: 0px;
+      }
+
+      /* ══════════════════════════
+       Rectangle 1 — 히어로
+    ══════════════════════════ */
+      .rectangle-1 {
+        position: relative;
+        width: 100%;
+        height: 65vh;
+        min-height: 420px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      /* 다이아몬드 격자 배경 (이미지 스타일 재현) */
+      .rectangle-1::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: var(--main-2);
+        background-image:
+          repeating-linear-gradient(
+            45deg,
+            rgba(139, 228, 255, 0.25) 0px,
+            rgba(139, 228, 255, 0.25) 1px,
+            transparent 1px,
+            transparent 28px
+          ),
+          repeating-linear-gradient(
+            -45deg,
+            rgba(139, 228, 255, 0.25) 0px,
+            rgba(139, 228, 255, 0.25) 1px,
+            transparent 1px,
+            transparent 28px
+          );
+        z-index: 0;
+      }
+
+      /* 콘페티 도트 장식 */
+      .dots-wrap {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+      }
+      .dot-deco {
+        position: absolute;
+        border-radius: 50%;
+      }
+      .dot-deco:nth-child(1) {
+        width: 10px;
+        height: 10px;
+        background: var(--point-1);
+        top: 12%;
+        left: 8%;
+        opacity: 0.7;
+      }
+      .dot-deco:nth-child(2) {
+        width: 7px;
+        height: 7px;
+        background: var(--point-2);
+        top: 18%;
+        right: 10%;
+        opacity: 0.6;
+      }
+      .dot-deco:nth-child(3) {
+        width: 12px;
+        height: 12px;
+        background: #ffd966;
+        top: 8%;
+        left: 55%;
+        opacity: 0.55;
+      }
+      .dot-deco:nth-child(4) {
+        width: 8px;
+        height: 8px;
+        background: var(--sub-2);
+        top: 28%;
+        left: 5%;
+        opacity: 0.6;
+      }
+      .dot-deco:nth-child(5) {
+        width: 6px;
+        height: 6px;
+        background: var(--point-1);
+        top: 35%;
+        right: 6%;
+        opacity: 0.5;
+      }
+      .dot-deco:nth-child(6) {
+        width: 10px;
+        height: 10px;
+        background: var(--point-2);
+        top: 5%;
+        right: 30%;
+        opacity: 0.45;
+      }
+      .dot-deco:nth-child(7) {
+        width: 9px;
+        height: 9px;
+        background: #ffd966;
+        top: 42%;
+        left: 88%;
+        opacity: 0.5;
+      }
+      .dot-deco:nth-child(8) {
+        width: 7px;
+        height: 7px;
+        background: var(--sub-2);
+        top: 50%;
+        left: 3%;
+        opacity: 0.6;
+      }
+
+      /* 상단 타이틀 텍스트 */
+      .text-main-image {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 3;
+        animation: popIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8) translateY(-8px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      .text-main-image .script {
+        font-family: "Pacifico", cursive;
+        font-size: 20px;
+        color: var(--brown);
+        letter-spacing: 1px;
+        text-shadow: 0 2px 6px rgba(160, 120, 80, 0.2);
+      }
+
+      .text-main-image .block-title {
+        font-family: "Pacifico", cursive;
+        font-size: 32px;
+        color: var(--brown);
+        letter-spacing: 2px;
+        line-height: 1.2;
+        text-shadow: 0 3px 10px rgba(160, 120, 80, 0.18);
+      }
+
+      .text-main-image .hearts {
+        font-size: 14px;
+        color: var(--point-1);
+        letter-spacing: 8px;
+        margin-top: 4px;
+        display: block;
+      }
+
+      /* 시나모롤 이미지 */
+      .cinnamoroll-img-wrap {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -55%); /* ⬅️ 살짝 위로 */
+
+        width: 160%; /* ⬅️ 크게 */
+        max-width: none;
+
+        z-index: 4;
+        animation: none; /* 둥둥 제거 */
+      }
+
+      @keyframes floatY {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+      }
+
+      .cinnamoroll-img-wrap img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+
+      /* 하단 페이드 */
+      .fade-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 40px;
+        background: linear-gradient(to bottom, transparent, var(--white));
+        z-index: 5;
+      }
+
+      /* ══════════════════════════
+       Rectangle 2 — 하단 카드
+    ══════════════════════════ */
+      .rectangle-2 {
+        background: var(--white);
+        border-radius: 32px 32px 0 0;
+        margin-top: -100px;
+        position: relative;
+        z-index: 6;
+        padding: 20px 20px 40px;
+        padding-bottom: 160px;
+        flex: 1;
+        box-shadow: 0 -6px 28px rgba(255, 149, 167, 0.13);
+        animation: slideUp 0.9s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(36px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .handle {
+        width: 40px;
+        height: 4px;
+        border-radius: 2px;
+        background: var(--sub-2);
+        margin: 0 auto 26px;
+      }
+
+      /* 소개 글 */
+      .text-cafe-intro {
+        margin-bottom: 24px;
+      }
+
+      .intro-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+        color: var(--point-1);
+        background: var(--sub-1);
+        border-radius: 20px;
+        padding: 5px 13px;
+        margin-bottom: 14px;
+      }
+
+      .text-cafe-intro h2 {
+        font-size: 21px;
+        font-weight: 700;
+        color: var(--text-dark);
+        line-height: 1.5;
+        margin-bottom: 12px;
+      }
+
+      .text-cafe-intro p {
+        font-size: 13.5px;
+        font-weight: 300;
+        color: var(--text-mid);
+        line-height: 1.95;
+      }
+
+      /* 오늘의 추천 배너 */
+      .today-banner {
+        background: linear-gradient(
+          120deg,
+          var(--sub-1) 0%,
+          var(--main-1) 100%
+        );
+        border-radius: 22px;
+        padding: 18px 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        align-items: center;
+        margin-bottom: 22px;
+        border: 1.5px solid var(--sub-2);
+      }
+
+      .today-banner .info .tag {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1.8px;
+        color: var(--point-1);
+        margin-bottom: 5px;
+      }
+
+      .today-banner .info {
+        text-align: right;
+      }
+
+      .today-banner .info .title {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--text-dark);
+      }
+
+      .today-banner .info .desc {
+        font-size: 12px;
+        color: var(--text-mid);
+        margin-top: 3px;
+      }
+
+      .today-banner .emoji-big {
+        font-size: 44px;
+        line-height: 1;
+      }
+
+      /* 메뉴 카드 */
+      .section-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 14px;
+      }
+
+      .menu-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 22px;
+      }
+
+      .menu-card {
+        flex: 1; /* ⬅️ 동일 너비 */
+        min-width: 0; /* ⬅️ overflow 방지 (핵심!) */
+
+        padding: 12px 8px; /* ⬅️ 살짝 줄여서 공간 확보 */
+        text-align: center;
+        border-radius: 16px;
+      }
+
+      .menu-card:nth-child(1) {
+        background: var(--main-1);
+      }
+      .menu-card:nth-child(2) {
+        background: var(--sub-1);
+      }
+      .menu-card:nth-child(3) {
+        background: var(--main-2);
+      }
+
+      .menu-card:active {
+        transform: scale(0.95);
+      }
+
+      .menu-card .mname {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--text-dark);
+        display: block;
+      }
+      .menu-card .mprice {
+        font-size: 11px;
+        color: var(--text-mid);
+        margin-top: 3px;
+        display: block;
+      }
+
+      /* CTA 버튼 */
+      .btn-cta {
+        margin-top: 10px;
+        display: block;
+        width: 100%;
+        padding: 17px;
+        border-radius: 22px;
+        background: linear-gradient(
+          90deg,
+          var(--point-1) 0%,
+          var(--sub-2) 100%
+        );
+        color: var(--white);
+        font-family: "Noto Sans KR", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 8px 22px rgba(255, 149, 167, 0.38);
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+
+      .btn-cta:active {
+        transform: scale(0.97);
+        box-shadow: 0 4px 12px rgba(255, 149, 167, 0.25);
+      }
+
+      /* 공통 섹션 */
+      .section {
+        margin-top: 24px;
+      }
+
+      /* Section 2 이벤트 */
+      .event-card {
+        display: flex;
+        gap: 14px;
+        background: linear-gradient(120deg, var(--main-1), var(--sub-1));
+        padding: 16px;
+        border-radius: 20px;
+        align-items: center;
+      }
+
+      .event-img {
+        font-size: 36px;
+      }
+
+      .event-title {
+        font-weight: 700;
+        color: var(--text-dark);
+      }
+
+      .event-desc {
+        font-size: 12px;
+        color: var(--text-mid);
+      }
+
+      .event-date {
+        font-size: 11px;
+        color: var(--point-1);
+        margin-top: 4px;
+      }
+
+      /* Section 3 브랜드 */
+      .brand-box {
+        background: var(--main-2);
+        border-radius: 20px;
+        padding: 18px;
+        text-align: center;
+      }
+
+      .brand-img {
+        font-size: 40px;
+        margin-bottom: 10px;
+      }
+
+      .brand-text {
+        font-size: 13px;
+        color: var(--text-mid);
+        line-height: 1.7;
+      }
+
+      /* Section 4 메뉴 */
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .menu-item {
+        background: var(--white);
+        border-radius: 18px;
+        padding: 12px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .menu-thumb {
+        font-size: 28px;
+        margin-bottom: 6px;
+      }
+
+      .menu-item span {
+        font-size: 11px;
+        color: var(--text-mid);
+      }
+
+      /* Section 5 추천 */
+      .combo-box {
+        background: linear-gradient(90deg, var(--sub-1), var(--main-1));
+        padding: 18px;
+        border-radius: 20px;
+        text-align: center;
+      }
+
+      .combo-title {
+        font-weight: 700;
+        color: var(--point-1);
+        margin-bottom: 6px;
+      }
+
+      .combo-desc {
+        font-size: 13px;
+        color: var(--text-dark);
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: var(--main-1);
+        padding: 14px 16px 24px;
+      }
+
+      /* 물결 효과 */
+      .header::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        background: radial-gradient(
+            circle at 10px -5px,
+            var(--main-1) 20px,
+            transparent 21px
+          )
+          repeat-x;
+        background-size: 20px 20px;
+      }
+
+      .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Pacifico", cursive;
+        font-size: 16px;
+        color: var(--brown);
+      }
+
+      .menu,
+      .alarm {
+        font-size: 18px;
+      }
+
+      .footer {
+        position: fixed; /* ⬅️ sticky → fixed */
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: 100%;
+        max-width: 430px;
+
+        background: var(--main-1);
+        padding: 10px 0 14px;
+        z-index: 20; /* ⬅️ 위에 올라오게 */
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .nav-item {
+        font-size: 11px;
+        color: var(--text-mid);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .nav-item.active {
+        color: var(--point-1);
+      }
+
+      .nav-item.center {
+        font-size: 24px;
+        background: var(--white);
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -20px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      .intro-flex {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      /* 텍스트 */
+      .intro-text {
+        flex: 1;
+      }
+
+      /* 이미지 */
+      .intro-img {
+        width: 140px; /* ⬅️ 키움 (기존 90px → 140px) */
+        flex-shrink: 0; /* ⬅️ 줄어들지 않게 (핵심) */
+      }
+
+      .intro-img img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .menu-img {
+        width: 100%;
+        height: auto; /* ⬅️ 이게 핵심 */
+        max-height: 90px; /* ⬅️ 최대 높이만 제한 */
+        object-fit: contain;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <div class="page">
+      <header class="header">
+        <div class="header-inner">
+          <span class="menu">☰</span>
+          <span class="logo">☁️ Cinnamoroll</span>
+          <span class="alarm">🔔</span>
+        </div>
+      </header>
+
+      <!-- Rectangle 1 (nodeId: 4:7) — 히어로 영역 -->
+      <div class="rectangle-1">
+        <!-- 다이아몬드 격자 배경 -->
+        <div class="dots-wrap">
+          <div class="dot-deco"></div>
+          <div class="dot-deco"></div>
+          <div class="dot-deco"></div>
+          <div class="dot-deco"></div>
+          <div class="dot-deco"></div>
+          <div class="dot-deco"></div>
+          <div class="dot-deco"></div>
+          <div class="dot-deco"></div>
+        </div>
+
+        <!-- 시나모롤 공식 이미지 -->
+        <div class="cinnamoroll-img-wrap">
+          <img src="cinnamoroll.png" alt="Cinnamoroll Sweet Cafe" />
+        </div>
+
+        <div class="fade-bottom"></div>
+      </div>
+
+      <!-- Rectangle 2 (nodeId: 4:8) — 하단 콘텐츠 카드 -->
+      <div class="rectangle-2">
+        <div class="handle"></div>
+
+        <!-- 카페 소개 글 TEXT (nodeId: 4:50) -->
+        <div class="text-cafe-intro">
+          <div class="intro-flex">
+            <!-- 왼쪽 텍스트 -->
+            <div class="intro-text">
+              <span class="intro-badge">🌸 Our Café Story</span>
+              <h2>시나모롤과 함께하는<br />달콤한 한때 ☁️</h2>
+              <p>
+                시나모롤이 차린 귀여운 카페예요.<br />
+                솜사탕처럼 달콤한 음료와 디저트로<br />
+                소중한 사람과 특별한 순간을 만들어요
+              </p>
+            </div>
+
+            <!-- 오른쪽 이미지 -->
+            <div class="intro-img">
+              <img src="story.png" alt="cinnamorollst" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 오늘의 추천 -->
+        <div class="today-banner">
+          <div class="info">
+            <p class="tag">TODAY'S SPECIAL</p>
+            <p class="title">시나모롤 라떼</p>
+            <p class="desc">시나몬 향 가득한 시그니처 음료</p>
+          </div>
+          <img src="cup.png" class="menu-img" />
+        </div>
+
+        <p class="section-title">🍬 인기 메뉴</p>
+        <div class="menu-row">
+          <div class="menu-card">
+            <img src="soda.png" class="menu-img" />
+            <span class="mname">구름 소다</span>
+            <span class="mprice">6,500원</span>
+          </div>
+          <div class="menu-card">
+            <img src="cake.png" class="menu-img" />
+            <span class="mname">롤케이크</span>
+            <span class="mprice">7,000원</span>
+          </div>
+          <div class="menu-card">
+            <img src="tea.png" class="menu-img" />
+            <span class="mname">블루 티</span>
+            <span class="mprice">5,500원</span>
+          </div>
+        </div>
+
+        <button class="btn-cta">메뉴 전체 보기</button>
+
+        <!-- Section 2 : 이벤트 한정 -->
+        <div class="section event-section">
+          <div class="event-card">
+            <img src="berry.png" class="menu-img" />
+            <div class="event-info">
+              <p class="event-title">봄 한정 딸기 페어</p>
+              <p class="event-desc">시나모롤과 함께하는 달콤한 딸기 시즌 🍓</p>
+              <p class="event-date">2026.04.01 - 2026.05.31</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3 : 브랜드 소개 -->
+        <div class="section brand-section">
+          <p class="section-title">☁️ 브랜드 소개</p>
+          <div class="brand-box">
+            <img src="cina.png" class="menu-img" />
+            <p class="brand-text">
+              시나모롤은 하늘에서 내려온 강아지 친구로,<br />
+              따뜻한 미소와 함께 행복을 전해요 💙<br /><br />
+              우리의 카페는 그런 시나모롤의 감성을 담아<br />
+              편안하고 달콤한 공간을 만들었어요.
+            </p>
+          </div>
+        </div>
+        <!-- Section 4 : 메뉴 소개 -->
+        <div class="section menu-section">
+          <p class="section-title">🍽 메뉴 소개</p>
+
+          <div class="menu-grid">
+            <div class="menu-item">
+              <img src="cup.png" class="menu-img" />
+              <p>시나모롤 라떼<br /><span>6,800원</span></p>
+            </div>
+            <div class="menu-item">
+              <img src="cake.png" class="menu-img" />
+              <p>롤케이크<br /><span>7,000원</span></p>
+            </div>
+
+            <div class="menu-item">
+              <img src="soda.png" class="menu-img" />
+              <p>구름 소다<br /><span>6,500원</span></p>
+            </div>
+
+            <div class="menu-item">
+              <img src="tea.png" class="menu-img" />
+              <p>블루 티<br /><span>5,500원</span></p>
+            </div>
+          </div>
+        </div>
+        <!-- Section 5 : 추천 조합 -->
+        <div class="section combo-section">
+          <p class="section-title">💖 추천 조합</p>
+
+          <div class="combo-box">
+            <p class="combo-title">BEST SET</p>
+            <p class="combo-desc">
+              시나모롤 라떼 + 롤케이크 조합<br />
+              부드러움 + 달콤함의 완벽 밸런스 ☁️🍰
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="nav">
+        <div class="nav-item active">🏠<span>홈</span></div>
+        <div class="nav-item">☕<span>메뉴</span></div>
+        <div class="nav-item center">💙</div>
+        <div class="nav-item">🎁<span>굿즈</span></div>
+        <div class="nav-item">👤<span>마이</span></div>
+      </div>
+    </footer>
+  </body>
+</html>
